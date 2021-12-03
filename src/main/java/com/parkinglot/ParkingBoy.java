@@ -10,6 +10,10 @@ public class ParkingBoy {
         this.parkingLots = parkingLots;
     }
 
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
+
     public Ticket park(Car car) {
         try {
             return this.parkingLots.stream()

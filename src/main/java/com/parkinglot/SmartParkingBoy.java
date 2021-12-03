@@ -5,17 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class SmartParkingBoy {
+public class SmartParkingBoy extends ParkingBoy {
     HashMap<Ticket, Car> ticketCarMap = new HashMap<>();
-    private final List<ParkingLot> parkingLots;
 
     public SmartParkingBoy(List<ParkingLot> parkingLots) {
-        this.parkingLots = parkingLots;
+        super(parkingLots);
     }
 
+    @Override
     public Ticket park(Car car) {
         try {
-            return this.parkingLots.stream()
+            return super.getParkingLots().stream()
                     .filter(parkingLot -> parkingLot.getAvailablePosition() > 0)
                     .max(Comparator.comparing(ParkingLot::getAvailablePosition))
                     .get()
@@ -23,13 +23,5 @@ public class SmartParkingBoy {
         } catch (NoSuchElementException exception) {
             throw new NoAvailablePositionException("No available position.");
         }
-    }
-
-    public Ticket parkTo(Car car, ParkingLot parkingLot) {
-        return parkingLot.park(car);
-    }
-
-    public Car fetch(Ticket ticket1) {
-        return null;
     }
 }
