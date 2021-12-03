@@ -16,8 +16,16 @@ public class ParkingLot {
     }
 
     public Ticket park (Car car) {
-        Ticket ticket = new Ticket();
-        ticketCarMap.put(ticket, car);
-        return ticket;
+        if (hasAvailablePosition()) {
+            Ticket ticket = new Ticket();
+            ticketCarMap.put(ticket, car);
+            return ticket;
+        } else {
+            return null;
+        }
+    }
+
+    private boolean hasAvailablePosition(){
+        return ticketCarMap.size() < this.capacity;
     }
 }
