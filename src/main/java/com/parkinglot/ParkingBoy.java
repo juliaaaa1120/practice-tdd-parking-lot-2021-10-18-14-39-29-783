@@ -3,6 +3,7 @@ package com.parkinglot;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public class ParkingBoy {
     HashMap<Ticket, Car> ticketCarMap = new HashMap<>();
@@ -25,10 +26,11 @@ public class ParkingBoy {
     }
 
     public Car fetch(Ticket ticket) {
-        return  this.parkingLots.stream()
-                .filter(parkingLot -> parkingLot.isTheCarParkedInHere(ticket))
-                .findFirst()
-                .get()
-                .fetch(ticket);
+            return this.parkingLots.stream()
+                    .filter(parkingLot -> parkingLot.isTheCarParkedInHere(ticket))
+                    .findFirst()
+                    .get()
+                    .fetch(ticket);
+
     }
 }
