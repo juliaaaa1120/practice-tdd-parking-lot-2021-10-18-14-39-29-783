@@ -9,7 +9,7 @@ public class SmartParkingBoyTest {
     List<ParkingLot> parkingLots = new ArrayList<>();
 
     @Test
-    void should_park_to_first_parking_lot_when_park_car_given_smart_parking_boy_manage_two_parking_lots_both_same_empty_position() {
+    void should_park_to_first_parking_lot_when_park_car_given_smart_parking_boy_manage_two_parking_lots_both_with_same_empty_positions() {
         //given
         ParkingLot firstParkingLot = new ParkingLot();
         ParkingLot secondParkingLot = new ParkingLot();
@@ -33,17 +33,21 @@ public class SmartParkingBoyTest {
     }
 
     @Test
-    void should_park_to_second_parking_lot_when_park_car_given_smart_parking_boy_manage_two_parking_lots_first_full_and_second_available() {
+    void should_park_to_second_parking_lot_when_park_car_given_smart_parking_boy_manage_two_parking_lots_second_has_more_empty_positions() {
         //given
         ParkingLot firstParkingLot = new ParkingLot();
         ParkingLot secondParkingLot = new ParkingLot();
         parkingLots.add(firstParkingLot);
         parkingLots.add(secondParkingLot);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        int i = 0;
-        while (i < 10) {
-            parkingBoy.park(new Car());
+        int i = 0, j = 0;
+        while (i < 6) {
+            parkingBoy.parkTo(new Car(), firstParkingLot);
             i++;
+        }
+        while (j < 3) {
+            parkingBoy.parkTo(new Car(), secondParkingLot);
+            j++;
         }
 
         //when
@@ -51,8 +55,8 @@ public class SmartParkingBoyTest {
 
         //then
         assertNotNull(ticket);
-        assertEquals(0, firstParkingLot.getAvailablePosition());
-        assertEquals(9, secondParkingLot.getAvailablePosition());
+        assertEquals(4, firstParkingLot.getAvailablePosition());
+        assertEquals(6, secondParkingLot.getAvailablePosition());
     }
 
     @Test
