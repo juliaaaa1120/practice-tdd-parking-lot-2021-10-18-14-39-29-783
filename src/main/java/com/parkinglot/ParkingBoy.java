@@ -1,13 +1,22 @@
 package com.parkinglot;
 
-public class ParkingBoy {
-    private ParkingLot parkingLot;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
-    public ParkingBoy(ParkingLot parkingLot) {
-        this.parkingLot = parkingLot;
+public class ParkingBoy {
+    HashMap<Ticket, Car> ticketCarMap = new HashMap<>();
+    private final List<ParkingLot> parkingLots;
+
+    public ParkingBoy(List<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
     }
 
     public Ticket park(Car car) {
-        return null;
+        return this.parkingLots.stream()
+                .filter(parkingLot -> parkingLot.getAvailablePosition() > 0)
+                .findFirst()
+                .get()
+                .park(car);
     }
 }

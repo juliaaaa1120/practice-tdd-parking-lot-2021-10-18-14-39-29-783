@@ -42,4 +42,8 @@ public class ParkingLot {
     private boolean isTheTicketNotUsed(Ticket ticket) {
         return ticketCarMap.get(ticket) != null;
     }
+
+    public int getAvailablePosition() {
+        return this.capacity - ticketCarMap.size();
+    }
 }
