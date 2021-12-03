@@ -86,10 +86,10 @@ public class ParkingLotTest {
 
         //when
         Ticket ticket = parkingLot.park(parkedCar);
-        Car returnCar1 = parkingLot.fetch(ticket);
-        Car returnCar2 = parkingLot.fetch(ticket);
+        Car returnCar = parkingLot.fetch(ticket);
+        Car returnTakenCar = parkingLot.fetch(ticket);
 
         //then
-        assertNull(returnCar2);
+        assertNull(returnTakenCar);
     }
 }

@@ -1,6 +1,8 @@
 package com.parkinglot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ParkingLot {
     HashMap<Ticket, Car> ticketCarMap = new HashMap<>();
@@ -15,7 +17,7 @@ public class ParkingLot {
         this.capacity = DEFAULT_CAPACITY;
     }
 
-    public Ticket park (Car car) {
+    public Ticket park(Car car) {
         if (hasAvailablePosition()) {
             Ticket ticket = new Ticket();
             ticketCarMap.put(ticket, car);
@@ -25,11 +27,21 @@ public class ParkingLot {
         }
     }
 
-    private boolean hasAvailablePosition(){
+    private boolean hasAvailablePosition() {
         return ticketCarMap.size() < this.capacity;
     }
 
     public Car fetch(Ticket ticket) {
-        return ticketCarMap.get(ticket);
+        if (isTheTicketNotUsed(ticket)) {
+            Car returnCar = ticketCarMap.get(ticket);
+            ticketCarMap.remove(ticket);
+            return returnCar;
+        } else {
+            return null;
+        }
+    }
+
+    private boolean isTheTicketNotUsed(Ticket ticket) {
+        return ticketCarMap.get(ticket) != null;
     }
 }
