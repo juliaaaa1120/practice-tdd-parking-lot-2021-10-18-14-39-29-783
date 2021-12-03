@@ -25,7 +25,11 @@ public class SmartParkingBoy {
         }
     }
 
-    public void parkTo(Car car, ParkingLot parkingLot) {
-        parkingLot.park(car);
+    public Ticket parkTo(Car car, ParkingLot parkingLot) {
+        return parkingLot.park(car);
+    }
+
+    public Car fetch(Ticket ticket1) {
+        return null;
     }
 }
