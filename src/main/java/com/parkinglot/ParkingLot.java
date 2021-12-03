@@ -22,9 +22,8 @@ public class ParkingLot {
             Ticket ticket = new Ticket();
             ticketCarMap.put(ticket, car);
             return ticket;
-        } else {
-            return null;
         }
+        throw new NoAvailablePositionException("No available position.");
     }
 
     private boolean hasAvailablePosition() {
