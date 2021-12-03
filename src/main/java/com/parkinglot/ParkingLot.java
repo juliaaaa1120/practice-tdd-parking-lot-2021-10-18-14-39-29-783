@@ -30,6 +30,6 @@ public class ParkingLot {
     }
 
     public Car fetch(Ticket ticket) {
-        return null;
+        return ticketCarMap.get(ticket);
     }
 }
