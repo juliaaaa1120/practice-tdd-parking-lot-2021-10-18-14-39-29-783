@@ -109,7 +109,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_throw_unrecognized_parking_ticket_exception_when_fetch_car_given_parking_lot_and_wrong_ticket() {
+    void should_throw_unrecognized_parking_ticket_exception_when_fetch_car_given_parking_lot_and_unrecognized_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot();
 
