@@ -68,7 +68,6 @@ public class ParkingLotTest {
     void should_return_null_when_fetch_car_given_parking_lot_and_wrong_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot();
-        Car parkedCar = new Car();
 
         //when
         Ticket ticket = new Ticket();
@@ -107,5 +106,19 @@ public class ParkingLotTest {
 
         //then
         assertEquals("No available position.", noAvailablePositionException.getMessage());
+    }
+
+    @Test
+    void should_throw_unrecognized_parking_ticket_exception_when_fetch_car_given_parking_lot_and_wrong_ticket() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+
+        //when
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, () -> {
+            parkingLot.fetch(new Ticket());
+        });
+
+        //then
+        assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
     }
 }
