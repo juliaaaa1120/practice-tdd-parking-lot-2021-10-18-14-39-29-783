@@ -131,13 +131,13 @@ public class SuperSmartParkingBoyTest {
         ParkingLot secondParkingLot = new ParkingLot(1);
         parkingLots.add(firstParkingLot);
         parkingLots.add(secondParkingLot);
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
-        smartParkingBoy.park(new Car());
-        smartParkingBoy.park(new Car());
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+        superSmartParkingBoy.park(new Car());
+        superSmartParkingBoy.park(new Car());
 
         //when
         NoAvailablePositionException noAvailablePositionException = assertThrows(NoAvailablePositionException.class, () -> {
-            smartParkingBoy.park(new Car());
+            superSmartParkingBoy.park(new Car());
         });
 
         //then
