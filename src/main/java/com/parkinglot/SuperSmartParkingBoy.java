@@ -15,7 +15,7 @@ public class SuperSmartParkingBoy extends ParkingBoy {
         try {
             return super.getParkingLots().stream()
                     .filter(parkingLot -> parkingLot.getAvailablePosition() > 0)
-                    .max(Comparator.comparing(ParkingLot::getAvailablePosition))
+                    .max(Comparator.comparing(ParkingLot::getAvailablePositionRate))
                     .get()
                     .park(car);
         } catch (NoSuchElementException exception) {
