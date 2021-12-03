@@ -33,7 +33,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_car_when_fetch_car_given_parking_lot_and_car_and_ticket() {
+    void should_return_car_when_fetch_car_given_parking_lot_and_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car parkedCar = new Car();
@@ -47,7 +47,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_right_car_when_fetch_car_given_parking_lot_and_2_cars_and_2_tickets() {
+    void should_return_right_car_when_fetch_car_given_parking_lot_with_2_cars_and_2_tickets() {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car parkedCar1 = new Car();
@@ -62,5 +62,19 @@ public class ParkingLotTest {
         //then
         assertEquals(returnCar1, parkedCar1);
         assertEquals(returnCar2, parkedCar2);
+    }
+
+    @Test
+    void should_return_null_when_fetch_car_given_parking_lot_and_wrong_ticket() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        Car parkedCar = new Car();
+
+        //when
+        Ticket ticket = new Ticket();
+        Car returnCar = parkingLot.fetch(ticket);
+
+        //then
+        assertNull(ticket);
     }
 }
