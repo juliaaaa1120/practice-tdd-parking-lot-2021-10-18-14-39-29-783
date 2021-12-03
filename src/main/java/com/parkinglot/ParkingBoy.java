@@ -11,11 +11,15 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) {
-        return this.parkingLots.stream()
-                .filter(parkingLot -> parkingLot.getAvailablePosition() > 0)
-                .findFirst()
-                .get()
-                .park(car);
+        try {
+            return this.parkingLots.stream()
+                    .filter(parkingLot -> parkingLot.getAvailablePosition() > 0)
+                    .findFirst()
+                    .get()
+                    .park(car);
+        } catch (NoSuchElementException exception) {
+            throw new NoAvailablePositionException("No available position.");
+        }
     }
 
     public Ticket parkTo(Car car, ParkingLot parkingLot) {
