@@ -75,6 +75,6 @@ public class ParkingLotTest {
         Car returnCar = parkingLot.fetch(ticket);
 
         //then
-        assertNull(ticket);
+        assertNull(returnCar);
     }
 }
