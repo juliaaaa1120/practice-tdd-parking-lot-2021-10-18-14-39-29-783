@@ -25,6 +25,10 @@ public class ParkingBoy {
     }
 
     public Car fetch(Ticket ticket) {
-        return null;
+        return  this.parkingLots.stream()
+                .filter(parkingLot -> parkingLot.isTheCarParkedInHere(ticket))
+                .findFirst()
+                .get()
+                .fetch(ticket);
     }
 }

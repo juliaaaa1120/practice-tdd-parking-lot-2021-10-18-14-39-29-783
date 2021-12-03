@@ -31,7 +31,7 @@ public class ParkingLot {
     }
 
     public Car fetch(Ticket ticket) {
-        if (isTheTicketNotUsed(ticket)) {
+        if (isTheCarParkedInHere(ticket)) {
             Car returnCar = ticketCarMap.get(ticket);
             ticketCarMap.remove(ticket);
             return returnCar;
@@ -39,7 +39,7 @@ public class ParkingLot {
         throw new UnrecognizedParkingTicketException("Unrecognized parking ticket.");
     }
 
-    private boolean isTheTicketNotUsed(Ticket ticket) {
+    public boolean isTheCarParkedInHere(Ticket ticket) {
         return ticketCarMap.get(ticket) != null;
     }
 
