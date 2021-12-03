@@ -88,11 +88,11 @@ public class SmartParkingBoyTest {
         ParkingLot secondParkingLot = new ParkingLot();
         parkingLots.add(firstParkingLot);
         parkingLots.add(secondParkingLot);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
 
         //when
         UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, () -> {
-            parkingBoy.fetch(new Ticket());
+            smartParkingBoy.fetch(new Ticket());
         });
 
         //then
