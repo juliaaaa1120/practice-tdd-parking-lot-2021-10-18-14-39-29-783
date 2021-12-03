@@ -1,5 +1,6 @@
 package com.parkinglot;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -16,7 +17,7 @@ public class SmartParkingBoy {
         try {
             return this.parkingLots.stream()
                     .filter(parkingLot -> parkingLot.getAvailablePosition() > 0)
-                    .findFirst()
+                    .max(Comparator.comparing(ParkingLot::getAvailablePosition))
                     .get()
                     .park(car);
         } catch (NoSuchElementException exception) {
@@ -24,7 +25,7 @@ public class SmartParkingBoy {
         }
     }
 
-    public Ticket parkTo(Car car, ParkingLot parkingLot) {
-        return parkingLot.park(car);
+    public void parkTo(Car car, ParkingLot parkingLot) {
+        parkingLot.park(car);
     }
 }

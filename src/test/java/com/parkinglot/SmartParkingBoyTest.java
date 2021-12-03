@@ -39,19 +39,19 @@ public class SmartParkingBoyTest {
         ParkingLot secondParkingLot = new ParkingLot();
         parkingLots.add(firstParkingLot);
         parkingLots.add(secondParkingLot);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
         int i = 0, j = 0;
         while (i < 6) {
-            parkingBoy.parkTo(new Car(), firstParkingLot);
+            smartParkingBoy.parkTo(new Car(), firstParkingLot);
             i++;
         }
         while (j < 3) {
-            parkingBoy.parkTo(new Car(), secondParkingLot);
+            smartParkingBoy.parkTo(new Car(), secondParkingLot);
             j++;
         }
 
         //when
-        Ticket ticket = parkingBoy.park(new Car());
+        Ticket ticket = smartParkingBoy.park(new Car());
 
         //then
         assertNotNull(ticket);
