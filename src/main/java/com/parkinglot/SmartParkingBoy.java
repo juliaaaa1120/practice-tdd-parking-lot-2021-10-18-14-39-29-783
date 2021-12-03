@@ -1,8 +1,11 @@
 package com.parkinglot;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class SmartParkingBoy {
+    HashMap<Ticket, Car> ticketCarMap = new HashMap<>();
     private final List<ParkingLot> parkingLots;
 
     public SmartParkingBoy(List<ParkingLot> parkingLots) {
@@ -10,10 +13,18 @@ public class SmartParkingBoy {
     }
 
     public Ticket park(Car car) {
-        return null;
+        try {
+            return this.parkingLots.stream()
+                    .filter(parkingLot -> parkingLot.getAvailablePosition() > 0)
+                    .findFirst()
+                    .get()
+                    .park(car);
+        } catch (NoSuchElementException exception) {
+            throw new NoAvailablePositionException("No available position.");
+        }
     }
 
-    public void parkTo(Car car, ParkingLot firstParkingLot) {
-
+    public Ticket parkTo(Car car, ParkingLot parkingLot) {
+        return parkingLot.park(car);
     }
 }
