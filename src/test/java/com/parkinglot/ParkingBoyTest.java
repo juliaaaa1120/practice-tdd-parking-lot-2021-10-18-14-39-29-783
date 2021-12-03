@@ -124,4 +124,24 @@ public class ParkingBoyTest {
         //then
         assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
     }
+
+    @Test
+    void should_throw_no_available_position_exception_when_park_car_given_standard_parking_boy_manage_two_parking_lots_both_full_and_car() {
+        //given
+        ParkingLot firstParkingLot = new ParkingLot(1);
+        ParkingLot secondParkingLot = new ParkingLot(1);
+        parkingLots.add(firstParkingLot);
+        parkingLots.add(secondParkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        parkingBoy.park(new Car());
+        parkingBoy.park(new Car());
+
+        //when
+        NoAvailablePositionException noAvailablePositionException = assertThrows(NoAvailablePositionException.class, () -> {
+            parkingBoy.park(new Car());
+        });
+
+        //then
+        assertEquals("No available position.", noAvailablePositionException.getMessage());
+    }
 }
