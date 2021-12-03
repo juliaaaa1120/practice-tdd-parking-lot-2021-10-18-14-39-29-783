@@ -71,15 +71,15 @@ public class SuperSmartParkingBoyTest {
         ParkingLot secondParkingLot = new ParkingLot();
         parkingLots.add(firstParkingLot);
         parkingLots.add(secondParkingLot);
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
         Car parkedCar1 = new Car();
         Car parkedCar2 = new Car();
-        Ticket ticket1 = smartParkingBoy.parkTo(parkedCar1, firstParkingLot);
-        Ticket ticket2 = smartParkingBoy.parkTo(parkedCar2, secondParkingLot);
+        Ticket ticket1 = superSmartParkingBoy.parkTo(parkedCar1, firstParkingLot);
+        Ticket ticket2 = superSmartParkingBoy.parkTo(parkedCar2, secondParkingLot);
 
         //when
-        Car returnCar1 = smartParkingBoy.fetch(ticket1);
-        Car returnCar2 = smartParkingBoy.fetch(ticket2);
+        Car returnCar1 = superSmartParkingBoy.fetch(ticket1);
+        Car returnCar2 = superSmartParkingBoy.fetch(ticket2);
 
         //then
         assertEquals(parkedCar1, returnCar1);
