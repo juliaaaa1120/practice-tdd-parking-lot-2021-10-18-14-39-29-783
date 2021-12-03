@@ -38,30 +38,30 @@ public class SuperSmartParkingBoyTest {
     }
 
     @Test
-    void should_park_to_second_parking_lot_when_park_car_given_super_smart_parking_boy_manage_two_parking_lots_second_has_more_empty_positions() {
+    void should_park_to_second_parking_lot_when_park_car_given_super_smart_parking_boy_manage_two_parking_lots_second_has_larger_available_position_rate() {
         //given
-        ParkingLot firstParkingLot = new ParkingLot();
-        ParkingLot secondParkingLot = new ParkingLot();
+        ParkingLot firstParkingLot = new ParkingLot(50);
+        ParkingLot secondParkingLot = new ParkingLot(30);
         parkingLots.add(firstParkingLot);
         parkingLots.add(secondParkingLot);
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
         int i = 0, j = 0;
-        while (i < 6) {
-            smartParkingBoy.parkTo(new Car(), firstParkingLot);
+        while (i < 32) {
+            superSmartParkingBoy.parkTo(new Car(), firstParkingLot);
             i++;
         }
-        while (j < 3) {
-            smartParkingBoy.parkTo(new Car(), secondParkingLot);
+        while (j < 18) {
+            superSmartParkingBoy.parkTo(new Car(), secondParkingLot);
             j++;
         }
 
         //when
-        Ticket ticket = smartParkingBoy.park(new Car());
+        Ticket ticket = superSmartParkingBoy.park(new Car());
 
         //then
         assertNotNull(ticket);
-        assertEquals(4, firstParkingLot.getAvailablePosition());
-        assertEquals(6, secondParkingLot.getAvailablePosition());
+        assertEquals(18, firstParkingLot.getAvailablePosition());
+        assertEquals(11, secondParkingLot.getAvailablePosition());
     }
 
     @Test
