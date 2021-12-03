@@ -36,7 +36,7 @@ public class ParkingLot {
             ticketCarMap.remove(ticket);
             return returnCar;
         }
-        throw new UnrecognizedParkingTicketException("Unrecognized parking ticket.");
+        throw null;
     }
 
     private boolean isTheTicketNotUsed(Ticket ticket) {
