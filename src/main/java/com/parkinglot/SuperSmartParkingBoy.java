@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class SmartParkingBoy extends ParkingBoy {
-    public SmartParkingBoy(List<ParkingLot> parkingLots) {
+public class SuperSmartParkingBoy extends ParkingBoy {
+    public SuperSmartParkingBoy(List<ParkingLot> parkingLots) {
         super(parkingLots);
     }
 
