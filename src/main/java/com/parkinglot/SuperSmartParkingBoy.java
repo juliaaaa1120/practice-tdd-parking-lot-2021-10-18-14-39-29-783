@@ -12,14 +12,10 @@ public class SuperSmartParkingBoy extends ParkingBoy {
 
     @Override
     public Ticket park(Car car) {
-        try {
-            return super.getParkingLots().stream()
-                    .filter(parkingLot -> parkingLot.getAvailablePosition() > 0)
-                    .max(Comparator.comparing(ParkingLot::getAvailablePositionRate))
-                    .get()
-                    .park(car);
-        } catch (NoSuchElementException exception) {
-            throw new NoAvailablePositionException("No available position.");
-        }
+        ParkingLot assignedParkingLot = super.getParkingLots().stream()
+                .filter(parkingLot -> parkingLot.getAvailablePosition() > 0)
+                .max(Comparator.comparing(ParkingLot::getAvailablePositionRate))
+                .orElseThrow(() -> new NoAvailablePositionException("No available position."));
+        return assignedParkingLot.park(car);
     }
 }

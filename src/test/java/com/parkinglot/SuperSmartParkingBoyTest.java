@@ -13,69 +13,57 @@ public class SuperSmartParkingBoyTest {
     @Test
     void should_park_to_first_parking_lot_when_park_car_given_super_smart_parking_boy_manage_two_parking_lots_both_with_same_available_position_rate() {
         //given
-        ParkingLot firstParkingLot = new ParkingLot(20);
-        ParkingLot secondParkingLot = new ParkingLot(30);
+        ParkingLot firstParkingLot = new ParkingLot();
+        firstParkingLot.park(new Car());
+        ParkingLot secondParkingLot = new ParkingLot();
+        secondParkingLot.park(new Car());
         parkingLots.add(firstParkingLot);
         parkingLots.add(secondParkingLot);
         SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
-        int i = 0, j = 0;
-        while (i < 14) {
-            superSmartParkingBoy.parkTo(new Car(), firstParkingLot);
-            i++;
-        }
-        while (j < 21) {
-            superSmartParkingBoy.parkTo(new Car(), secondParkingLot);
-            j++;
-        }
 
         //when
         Ticket ticket = superSmartParkingBoy.park(new Car());
 
         //then
         assertNotNull(ticket);
-        assertEquals(5, firstParkingLot.getAvailablePosition());
+        assertEquals(8, firstParkingLot.getAvailablePosition());
         assertEquals(9, secondParkingLot.getAvailablePosition());
     }
 
     @Test
     void should_park_to_second_parking_lot_when_park_car_given_super_smart_parking_boy_manage_two_parking_lots_second_has_larger_available_position_rate() {
         //given
-        ParkingLot firstParkingLot = new ParkingLot(50);
-        ParkingLot secondParkingLot = new ParkingLot(30);
+        ParkingLot firstParkingLot = new ParkingLot();
+        firstParkingLot.park(new Car());
+        firstParkingLot.park(new Car());
+        firstParkingLot.park(new Car());
+        ParkingLot secondParkingLot = new ParkingLot(6);
+        secondParkingLot.park(new Car());
         parkingLots.add(firstParkingLot);
         parkingLots.add(secondParkingLot);
         SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
-        int i = 0, j = 0;
-        while (i < 32) {
-            superSmartParkingBoy.parkTo(new Car(), firstParkingLot);
-            i++;
-        }
-        while (j < 18) {
-            superSmartParkingBoy.parkTo(new Car(), secondParkingLot);
-            j++;
-        }
 
         //when
         Ticket ticket = superSmartParkingBoy.park(new Car());
 
         //then
         assertNotNull(ticket);
-        assertEquals(18, firstParkingLot.getAvailablePosition());
-        assertEquals(11, secondParkingLot.getAvailablePosition());
+        assertEquals(7, firstParkingLot.getAvailablePosition());
+        assertEquals(4, secondParkingLot.getAvailablePosition());
     }
 
     @Test
     void should_return_right_car_when_fetch_car_given_super_smart_parking_boy_manage_two_parking_lots_each_with_one_car_and_two_tickets() {
         //given
-        ParkingLot firstParkingLot = new ParkingLot();
-        ParkingLot secondParkingLot = new ParkingLot();
+        ParkingLot firstParkingLot = new ParkingLot(1);
+        ParkingLot secondParkingLot = new ParkingLot(1);
         parkingLots.add(firstParkingLot);
         parkingLots.add(secondParkingLot);
         SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
         Car parkedCar1 = new Car();
         Car parkedCar2 = new Car();
-        Ticket ticket1 = superSmartParkingBoy.parkTo(parkedCar1, firstParkingLot);
-        Ticket ticket2 = superSmartParkingBoy.parkTo(parkedCar2, secondParkingLot);
+        Ticket ticket1 = superSmartParkingBoy.park(parkedCar1);
+        Ticket ticket2 = superSmartParkingBoy.park(parkedCar2);
 
         //when
         Car returnCar1 = superSmartParkingBoy.fetch(ticket1);

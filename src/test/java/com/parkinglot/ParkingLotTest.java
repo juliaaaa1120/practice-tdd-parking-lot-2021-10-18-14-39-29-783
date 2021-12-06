@@ -18,20 +18,6 @@ public class ParkingLotTest {
         assertNotNull(ticket);
     }
 
-//    @Test
-//    void should_return_null_when_park_car_given_full_parking_lot_and_car() {
-//        //given
-//        ParkingLot parkingLot = new ParkingLot(1);
-//        Car car = new Car();
-//        parkingLot.park(car);
-//
-//        //when
-//        Ticket ticket = parkingLot.park(car);
-//
-//        //then
-//        assertNull(ticket);
-//    }
-
     @Test
     void should_return_car_when_fetch_car_given_parking_lot_and_ticket() {
         //given
@@ -63,34 +49,6 @@ public class ParkingLotTest {
         assertEquals(returnCar1, parkedCar1);
         assertEquals(returnCar2, parkedCar2);
     }
-
-//    @Test
-//    void should_return_null_when_fetch_car_given_parking_lot_and_wrong_ticket() {
-//        //given
-//        ParkingLot parkingLot = new ParkingLot();
-//
-//        //when
-//        Ticket ticket = new Ticket();
-//        Car returnCar = parkingLot.fetch(ticket);
-//
-//        //then
-//        assertNull(returnCar);
-//    }
-
-//    @Test
-//    void should_return_null_when_fetch_car_given_parking_lot_and_used_ticket() {
-//        //given
-//        ParkingLot parkingLot = new ParkingLot();
-//        Car parkedCar = new Car();
-//
-//        //when
-//        Ticket ticket = parkingLot.park(parkedCar);
-//        Car returnCar = parkingLot.fetch(ticket);
-//        Car returnTakenCar = parkingLot.fetch(ticket);
-//
-//        //then
-//        assertNull(returnTakenCar);
-//    }
 
     @Test
     void should_throw_no_available_position_exception_when_park_car_given_parking_lot_without_position_and_car() {
